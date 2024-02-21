@@ -3,8 +3,7 @@ class SketchPad {
         this.canvas = document.createElement('canvas');
         this.canvas.width = size;
         this.canvas.height = size;
-        this.paths = [];
-        this.isDrawing = false;
+
         this.canvas.style=`
             background-color: white;
             box-shadow: 0px 0px 10px 2px black;
@@ -19,7 +18,14 @@ class SketchPad {
         container.appendChild(this.undoButton);
 
         this.ctx = this.canvas.getContext('2d');
+        this.reset(); 
         this.#addEventListeners();
+    }
+
+    reset() {
+        this.paths = [];
+        this.isDrawing = false;
+        this.#redraw();
     }
 
     #addEventListeners() {
@@ -38,7 +44,7 @@ class SketchPad {
             }
         }
 
-        this.canvas.onmouseup = () => {
+        document.onmouseup = () => {
             this.isDrawing = false;
         }
 
@@ -50,8 +56,8 @@ class SketchPad {
             const loc = evt.touches[0];
             this.canvas.onmousemove(loc);
         }
-        this.canvas.ontouchend = (evt) => {
-            this.canvas.onmouseup();
+        document.ontouchend = (evt) => {
+            document.onmouseup();
         }
         this.undoButton.onclick = () => {
             this.paths.pop();
