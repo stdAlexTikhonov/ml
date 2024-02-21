@@ -19,6 +19,7 @@ class SketchPad {
         container.appendChild(this.undoButton);
 
         this.ctx = this.canvas.getContext('2d');
+        this.#redraw();
         this.#addEventListeners();
     }
 
