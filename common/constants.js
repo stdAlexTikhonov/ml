@@ -9,4 +9,4 @@ constants.SAMPLES = constants.DATASET_DIR + '/samples.json';
 constants.JS_OBJECTS = '../common/js_objects';
 constants.SAMPLES_JS = constants.JS_OBJECTS + '/samples.js';
 
-if (module) module.exports = constants;
+if (typeof module !== 'undefined') module.exports = constants;

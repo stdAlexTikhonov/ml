@@ -9,4 +9,4 @@ utils.printProgress = (count, max) => {
     process.stdout.write(count + '/' + max + ' (' + percent + ') ');
 }
 
-if (module) module.exports = utils;
+if (typeof module !== 'undefined') module.exports = utils;
