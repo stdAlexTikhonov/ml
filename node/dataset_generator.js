@@ -30,6 +30,7 @@ fileNames.forEach(fn => {
 });
 
 fs.writeFileSync(constants.SAMPLES, JSON.stringify(samples));
+fs.writeFileSync(constants.SAMPLES_JS, 'const samples = ' + JSON.stringify(samples)) + ';';
 
 function generateImageFile (outfile, paths) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
