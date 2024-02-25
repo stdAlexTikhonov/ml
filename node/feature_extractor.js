@@ -20,4 +20,6 @@ const featureNames = ['Path count', 'Point count'];
 
 fs.writeFileSync(constants.FEATURES, JSON.stringify({ featureNames, samples }));
 
+fs.writeFileSync(constants.FEATURES_JS, `const features = ${JSON.stringify({ featureNames, samples })};`);
+
 console.log('DONE!');

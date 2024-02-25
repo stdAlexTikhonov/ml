@@ -8,11 +8,12 @@
     <body>
         <h1>Data Viewer</h1>
         <div id="constainer"></div>
-        <script src="../common/js_objects/samples.js"></script>
+        <script src="../common/js_objects/featrues.js"></script>
         <script src="../common/constants.js"></script>
         <script src="../common/utils.js"></script>
         <script src="js/display.js"></script>
         <script>
+            const { featureNames, samples } = features;
             const groups = utils.groupBy(samples, 'student_id');
             for (let student_id in groups) {
                 const samples = groups[student_id];
