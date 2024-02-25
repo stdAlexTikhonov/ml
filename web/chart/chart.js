@@ -2,7 +2,7 @@ class Chart{
    constructor(container,samples,options,onClick=null){
       this.samples=samples;
 
-      this.axesLabels=options.axesLabels;
+      this.axesLabels=options.axisLabels;
       this.styles=options.styles;
       this.icon=options.icon;
       this.onClick=onClick;
