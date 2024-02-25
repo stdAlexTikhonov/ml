@@ -48,3 +48,6 @@ button:disabled,button:disabled:hover {
     margin: 1px;
     overflow: hidden;
 }
+.emphasize {
+    background-color: yellow;
+}

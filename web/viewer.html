@@ -28,10 +28,12 @@
             const options = {
                 size: 300,
                 axisLabels: featureNames,
-                styles: utils.styles
+                styles: utils.styles,
+                transparency: 0.7,
+                icon: 'text'
             };
 
-            const chart = new Chart(chartContainer, samples, options);
+            const chart = new Chart(chartContainer, samples, options, handleClick);
         </script>
     </body>
 </html>

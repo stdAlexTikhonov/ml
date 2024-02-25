@@ -28,3 +28,9 @@ function createRow (container, studentName, samples) {
 
     }
 }
+
+function handleClick (sample) {
+    const el = document.getElementById('sample_' + sample.id);
+    el.classList.add('emphasize');
+    el.scrollIntoView({ behavior: 'auto', block: 'center' })
+}
