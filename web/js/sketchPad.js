@@ -71,6 +71,10 @@ class SketchPad {
         draw.paths(this.ctx, this.paths);
         if (this.paths.length > 0) this.undoButton.disabled = false;
         else this.undoButton.disabled = true;
+        this.triggerUpdate();
+    }
+
+    triggerUpdate() {
         if (this.onUpdate) {
             this.onUpdate(this.paths);
         }
