@@ -47,3 +47,11 @@ function handleClick (sample, doScroll=true) {
     if (doScroll) el.scrollIntoView({ behavior: 'auto', block: 'center' });
     chart.selectSample(sample);
 }
+
+function toggleInput() {
+    if (inputContainer.style.display == 'none') {
+        inputContainer.style.display = 'block';
+    } else {
+        inputContainer.style.display = 'none';
+    }
+}
