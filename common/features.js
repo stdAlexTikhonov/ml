@@ -1,12 +1,12 @@
-const features = {};
+const featureFunctions = {};
 
-features.getPathCount = (paths) => paths.length;
+featureFunctions.getPathCount = (paths) => paths.length;
 
-features.getPointCount = (paths) => {
+featureFunctions.getPointCount = (paths) => {
     const points = paths.flat();
     return points.length;
 }
 
 if (typeof module !== 'undefined') {
-    module.exports = features;
+    module.exports = featureFunctions;
 }
