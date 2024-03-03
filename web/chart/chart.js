@@ -223,9 +223,9 @@ class Chart{
       const maxDelta = Math.max(deltaY, deltaX);
       const bounds={
          left:minX,
-         right:minX + maxDelta,
-         top:minY + maxDelta,
-         bottom:minY
+         right: maxX, //minX + maxDelta,
+         top: maxY, //minY + maxDelta,
+         bottom: minY
       };
       return bounds;
    }
