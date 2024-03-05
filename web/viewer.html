@@ -16,6 +16,8 @@
         </div>
         <div id="container"></div>
         <script src="../common/js_objects/featrues.js"></script>
+        <script src="../common/js_objects/training.js"></script>
+        <script src="../common/js_objects/testing.js"></script>
         <script src="../common/js_objects/minMax.js"></script>
 
         <script src="../common/constants.js"></script>
@@ -31,9 +33,24 @@
         <script src="chart/chart.js"></script>
         <script>
             const { featureNames, samples } = features;
-            const groups = utils.groupBy(samples, 'student_id');
-            for (let student_id in groups) {
-                const samples = groups[student_id];
+            const trainingSamples = training.samples;
+            const testingSamples = testing.samples;
+
+            for (const testSample of testingSamples) {
+                testSample.truth = testSample.label;
+                testSample.label = '?';
+            }
+
+            const trainingGroups = utils.groupBy(trainingSamples, 'student_id');
+            for (let student_id in trainingGroups) {
+                const samples = trainingGroups[student_id];
+                const studentName = samples[0].student_name;
+                createRow(container, studentName, samples);
+            }
+
+            const testingGroups = utils.groupBy(testingSamples, 'student_id');
+            for (let student_id in testingGroups) {
+                const samples = testingGroups[student_id];
                 const studentName = samples[0].student_name;
                 createRow(container, studentName, samples);
             }
@@ -46,10 +63,11 @@
                 icon: 'text'
             };
 
-            const chart = new Chart(chartContainer, samples, options, handleClick);
+            const chart = new Chart(chartContainer, trainingSamples, options, handleClick);
 
             const sketchPad = new SketchPad(inputContainer, onDrawingUpdate);
             sketchPad.canvas.style.cssText += 'outline: 10000px solid rgba(0, 0, 0, 0.7);';
+            toggleInput();
 
             function onDrawingUpdate(paths) {
                 const functions = featureFunctions.inUse.map(item => item.function);
@@ -61,9 +79,9 @@
             }
 
             function classify(point) {
-                const samplePoints = samples.map(s => s.point);
+                const samplePoints = trainingSamples.map(s => s.point);
                 const indecies = utils.getNearest(point, samplePoints, 10);
-                const nearestSamples = indecies.map(i => samples[i]);
+                const nearestSamples = indecies.map(i => trainingSamples[i]);
                 const labels = nearestSamples.map(s => s.label);
                 const counts={};
                 for (const label of labels) {
