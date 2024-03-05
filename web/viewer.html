@@ -39,6 +39,9 @@
             for (const testSample of testingSamples) {
                 testSample.truth = testSample.label;
                 testSample.label = '?';
+                const {label} = classify(testSample.point);
+                testSample.label = label;
+                testSample.correct = testSample.label === testSample.truth;
             }
 
             const trainingGroups = utils.groupBy(trainingSamples, 'student_id');
@@ -85,7 +88,7 @@
                 const labels = nearestSamples.map(s => s.label);
                 const counts={};
                 for (const label of labels) {
-                    counts.label = counts.label ? counts.label + 1 : 1;
+                    counts[label] = counts[label] ? counts[label] + 1 : 1;
                 }
                 const max = Math.max(...Object.values(counts));
                 const label = labels.find(l => counts[l] === max);
