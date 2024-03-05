@@ -19,6 +19,7 @@ utils.styles={
     pencil:{color:'magenta',text:'✏️'},
     clock:{color:'lightgray',text:'🕒'},
  };
+ utils.styles['?'] = { color: 'red', text: '🎈' }
 
 utils.groupBy = (objArray, key) => {
     const groups = {};

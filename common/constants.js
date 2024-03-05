@@ -11,5 +11,9 @@ constants.JS_OBJECTS = '../common/js_objects';
 constants.SAMPLES_JS = constants.JS_OBJECTS + '/samples.js';
 constants.FEATURES_JS = constants.JS_OBJECTS + '/featrues.js';
 constants.MIN_MAX_JS = constants.JS_OBJECTS + '/minMax.js';
+constants.TRAINING = constants.DATASET_DIR + '/training.json';
+constants.TRAINING_JS = constants.JS_OBJECTS + '/training.js';
+constants.TESTING = constants.DATASET_DIR + '/testing.json';
+constants.TESTING_JS = constants.JS_OBJECTS + '/testing.js';
 
 if (typeof module !== 'undefined') module.exports = constants;
