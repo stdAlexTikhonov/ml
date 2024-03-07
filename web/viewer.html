@@ -77,9 +77,10 @@
                 axisLabels: featureNames,
                 styles: utils.styles,
                 transparency: 0.7,
-                icon: 'text'
+                icon: 'text',
+                bg: new Image()
             };
-
+            options.bg.src = constants.DECISION_BOUNDARY
             const chart = new Chart(chartContainer, trainingSamples, options, handleClick);
 
             const sketchPad = new SketchPad(inputContainer, onDrawingUpdate);
