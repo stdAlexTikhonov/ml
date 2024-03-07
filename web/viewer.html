@@ -25,6 +25,7 @@
         <script src="../common/utils.js"></script>
         <script src="../common/draw.js"></script>
         <script src="../common/features.js"></script>
+        <script src="../common/classifiers/knn.js"></script>
 
         <script src="js/display.js"></script>
         <script src="js/sketchPad.js"></script>
@@ -39,12 +40,12 @@
 
             let correctCount = 0;
             let totalCount = 0;
-            let k = 10;
-
+            let k = 50;
+            const kNN = new KNN(trainingSamples, k);
             for (const testSample of testingSamples) {
                 testSample.truth = testSample.label;
                 testSample.label = '?';
-                const {label} = classify(testSample.point);
+                const {label} = kNN.predict(testSample.point);
                 testSample.label = label;
                 testSample.correct = testSample.label === testSample.truth;
                 totalCount++;
@@ -76,9 +77,10 @@
                 axisLabels: featureNames,
                 styles: utils.styles,
                 transparency: 0.7,
-                icon: 'text'
+                icon: 'text',
+                bg: new Image()
             };
-
+            options.bg.src = constants.DECISION_BOUNDARY
             const chart = new Chart(chartContainer, trainingSamples, options, handleClick);
 
             const sketchPad = new SketchPad(inputContainer, onDrawingUpdate);
@@ -89,23 +91,9 @@
                 const functions = featureFunctions.inUse.map(item => item.function);
                 const point = functions.map(f => f(paths));
                 utils.normalizePoints([point], minMax);
-                const { label, nearestSamples } = classify(point);
+                const { label, nearestSamples } = kNN.predict(point);
                 predictedLabelContainer.innerHTML = 'Is it a ' + label + '?';
                 chart.showDynamicPoint(point, nearestSamples);
-            }
-
-            function classify(point) {
-                const samplePoints = trainingSamples.map(s => s.point);
-                const indecies = utils.getNearest(point, samplePoints, k);
-                const nearestSamples = indecies.map(i => trainingSamples[i]);
-                const labels = nearestSamples.map(s => s.label);
-                const counts={};
-                for (const label of labels) {
-                    counts[label] = counts[label] ? counts[label] + 1 : 1;
-                }
-                const max = Math.max(...Object.values(counts));
-                const label = labels.find(l => counts[l] === max);
-                return { label, nearestSamples };
             }
         </script>
     </body>
