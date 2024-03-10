@@ -42,9 +42,13 @@ fs.writeFileSync(constants.FEATURES_JS, `const features = ${JSON.stringify({ fea
 
 fs.writeFileSync(constants.TRAINING, JSON.stringify({ featureNames, samples: training }));
 
+fs.writeFileSync(constants.TRAINING_CSV, utils.toCSV([...featureNames, 'Label'], training.map(p => [...p.point, p.label])));
+
 fs.writeFileSync(constants.TRAINING_JS, `const training = ${JSON.stringify({ featureNames, samples: training })};`);
 
 fs.writeFileSync(constants.TESTING, JSON.stringify({ featureNames, samples: testing }));
+
+fs.writeFileSync(constants.TESTING_CSV, utils.toCSV([...featureNames, 'Label'], testing.map(p => [...p.point, p.label])));
 
 fs.writeFileSync(constants.TESTING_JS, `const testing = ${JSON.stringify({ featureNames, samples: testing })};`);
 
