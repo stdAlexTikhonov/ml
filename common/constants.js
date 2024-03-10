@@ -13,8 +13,11 @@ constants.FEATURES_JS = constants.JS_OBJECTS + '/featrues.js';
 constants.MIN_MAX_JS = constants.JS_OBJECTS + '/minMax.js';
 constants.TRAINING = constants.DATASET_DIR + '/training.json';
 constants.TRAINING_JS = constants.JS_OBJECTS + '/training.js';
+constants.TESTING_CSV = constants.DATASET_DIR + '/testing.csv';
 constants.TESTING = constants.DATASET_DIR + '/testing.json';
 constants.TESTING_JS = constants.JS_OBJECTS + '/testing.js';
+constants.TRAINING_CSV = constants.DATASET_DIR + '/training.csv';
+
 constants.DECISION_BOUNDARY = constants.DATASET_DIR + '/decision_boundary.png';
 
 if (typeof module !== 'undefined') module.exports = constants;
